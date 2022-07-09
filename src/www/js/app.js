@@ -36,6 +36,7 @@ new Vue({
     clientDelete: null,
     clientCreate: null,
     clientCreateName: '',
+    clientCreateAllowedIps: '',
     clientEditName: null,
     clientEditNameId: null,
     clientEditAddress: null,
@@ -208,9 +209,10 @@ new Vue({
     },
     createClient() {
       const name = this.clientCreateName;
+      const allowedIps = this.clientCreateAllowedIps;
       if (!name) return;
 
-      this.api.createClient({ name })
+      this.api.createClient({ name, allowedIps })
         .catch(err => alert(err.message || err.toString()))
         .finally(() => this.refresh().catch(console.error));
     },
